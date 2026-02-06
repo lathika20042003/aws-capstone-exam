@@ -1,0 +1,31 @@
+- name: Configure Web Servers
+  hosts: tag_Name_web_*
+  become: yes
+
+  tasks:
+    - name: Install packages
+      yum:
+        name:
+          - httpd
+          - php
+          - php-mysqlnd
+          - git
+        state: present
+
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Deploy application
+      git:
+        repo: "{{ app_repo }}"
+        dest: "{{ web_root }}"
+        version: "{{ app_branch }}"
+        force: yes
+
+    - name: Copy DB check file
+      copy:
+        src: files/db_check.php
+        dest: "{{ web_root }}/db_check.php"
