@@ -277,7 +277,7 @@ resource "aws_db_instance" "mysql" {
 
   db_subnet_group_name    = aws_db_subnet_group.db_subnets.name
 
-  vpc_security_group_ids  = [aws_security_group.db_sg.id]
+  vpc_security_group_ids  = [sg-0e79f83f058bac889]
 
   skip_final_snapshot     = true
 
@@ -303,7 +303,7 @@ resource "aws_instance" "web" {
 
   subnet_id                   = local.selected_public_subnet_ids[count.index]
 
-  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+  vpc_security_group_ids      = [sg-0e79f83f058bac889]
 
   associate_public_ip_address = true
  
