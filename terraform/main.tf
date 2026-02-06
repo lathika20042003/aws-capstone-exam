@@ -108,7 +108,7 @@ resource "aws_security_group" "db_sg" {
 # ------------------
 resource "aws_instance" "web" {
   count         = 2
-  ami           = "ami-0c02fb55956c7d316"
+  ami           = "ami-0b6c6ebed2801a5cb"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public[count.index].id
   key_name      = var.key_name
